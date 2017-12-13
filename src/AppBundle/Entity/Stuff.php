@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Object
  *
- * @ORM\Table(name="object")
+ * @ORM\Table(name="stuff")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ObjectRepository")
  */
-class Object
+class Stuff
 {
     /**
      * @var int
@@ -70,6 +70,21 @@ class Object
      */
     private $isCustom;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="stuffs")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Room", inversedBy="stuffs")
+     */
+    private $rooms;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Inventory", inversedBy="stuffs")
+     */
+    private $stuffs;
+
 
     /**
      * Get id
@@ -86,7 +101,7 @@ class Object
      *
      * @param string $name
      *
-     * @return Object
+     * @return Stuff
      */
     public function setName($name)
     {
@@ -110,7 +125,7 @@ class Object
      *
      * @param integer $dimensionHeight
      *
-     * @return Object
+     * @return Stuff
      */
     public function setDimensionHeight($dimensionHeight)
     {
@@ -134,7 +149,7 @@ class Object
      *
      * @param integer $dimensionWidth
      *
-     * @return Object
+     * @return Stuff
      */
     public function setDimensionWidth($dimensionWidth)
     {
@@ -158,7 +173,7 @@ class Object
      *
      * @param integer $dimensionDeep
      *
-     * @return Object
+     * @return Stuff
      */
     public function setDimensionDeep($dimensionDeep)
     {
@@ -182,7 +197,7 @@ class Object
      *
      * @param boolean $isWeight
      *
-     * @return Object
+     * @return Stuff
      */
     public function setIsWeight($isWeight)
     {
@@ -206,7 +221,7 @@ class Object
      *
      * @param boolean $isFragile
      *
-     * @return Object
+     * @return Stuff
      */
     public function setIsFragile($isFragile)
     {
@@ -230,7 +245,7 @@ class Object
      *
      * @param boolean $isCustom
      *
-     * @return Object
+     * @return Stuff
      */
     public function setIsCustom($isCustom)
     {
@@ -248,5 +263,94 @@ class Object
     {
         return $this->isCustom;
     }
-}
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rooms = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Stuff
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Add room
+     *
+     * @param \AppBundle\Entity\Room $room
+     *
+     * @return Stuff
+     */
+    public function addRoom(\AppBundle\Entity\Room $room)
+    {
+        $this->rooms[] = $room;
+
+        return $this;
+    }
+
+    /**
+     * Remove room
+     *
+     * @param \AppBundle\Entity\Room $room
+     */
+    public function removeRoom(\AppBundle\Entity\Room $room)
+    {
+        $this->rooms->removeElement($room);
+    }
+
+    /**
+     * Get rooms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRooms()
+    {
+        return $this->rooms;
+    }
+
+    /**
+     * Set stuffs
+     *
+     * @param \AppBundle\Entity\Inventory $stuffs
+     *
+     * @return Stuff
+     */
+    public function setStuffs(\AppBundle\Entity\Inventory $stuffs = null)
+    {
+        $this->stuffs = $stuffs;
+
+        return $this;
+    }
+
+    /**
+     * Get stuffs
+     *
+     * @return \AppBundle\Entity\Inventory
+     */
+    public function getStuffs()
+    {
+        return $this->stuffs;
+    }
+}

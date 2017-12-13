@@ -21,6 +21,11 @@ class Inventory
      */
     private $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Stuff", mappedBy="stuffs")
+     */
+    private $stuffs;
+
 
     /**
      * Get id
@@ -31,5 +36,45 @@ class Inventory
     {
         return $this->id;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->stuffs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add stuff
+     *
+     * @param \AppBundle\Entity\Stuff $stuff
+     *
+     * @return Inventory
+     */
+    public function addStuff(\AppBundle\Entity\Stuff $stuff)
+    {
+        $this->stuffs[] = $stuff;
+
+        return $this;
+    }
+
+    /**
+     * Remove stuff
+     *
+     * @param \AppBundle\Entity\Stuff $stuff
+     */
+    public function removeStuff(\AppBundle\Entity\Stuff $stuff)
+    {
+        $this->stuffs->removeElement($stuff);
+    }
+
+    /**
+     * Get stuffs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStuffs()
+    {
+        return $this->stuffs;
+    }
+}
