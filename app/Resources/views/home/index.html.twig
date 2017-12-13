@@ -1,4 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
+        <div class="intro-text">
+            <div class="row">
+                <h1>INVENTAIRE DE MON DÉMÉNAGEMENT</h1>
+            </div>
+            <div class="row">
+                <p>Définissez la liste des objets que vous souhaitez déménager.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-3 lienOff">
+                <a href="#">UN APPARTEMENT</a>
+            </div>
+            <div class="col-md-offset-1 col-md-3 lienOff">
+                <a href="#">UNE MAISON</a>
+            </div>
+            <div class="col-md-offset-1 col-md-3 lienOn">
+                <a href="#">INVENTAIRE LIBRE</a>
+            </div>
+        </div>
+        <div class="row bg-insert">
+            <div class="col-md-4">
+                <div class="row line-separate">
+                    <h2>Ajoutez vos meubles</h2>
+                    <button class="btn-success">Ajoutez une pièce</button>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="row de-merde">
+                        <div id="imaginary_container">
+                            <div class="input-group stylish-input-group">
+                                <input type="text" class="form-control"  placeholder="Search" >
+                                <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                            </span>
+                            </div>
+                        </div>
+                        <button class="btn-primary pull-right">Ajoutez un meuble</button>
+                    </div>
+                    <button class="btn-primary pull-right valid-inventory-button">VALIDER L'INVENTAIRE</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
