@@ -1,3 +1,8 @@
 # hackathon-3-emoovz
 
-C'est parti!
+### Réalisé par:
+- Coralie Vivant
+- Steven Baudet
+- Benjamin Noclain
+- Matthieu Caradet
+- Benjamin Hervé
