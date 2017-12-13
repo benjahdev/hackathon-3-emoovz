@@ -1,0 +1,93 @@
+.barre-navigation {
+    width: 100%;
+}
+
+.intro-text h1 {
+    text-align: center;
+    font-family: Gotham-Bold,sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    color: #352F64;
+}
+
+.intro-text p {
+    text-align: center;
+    font-family: Gotham-Bold,sans-serif;
+    font-size: 1em;
+}
+
+.lienOff {
+    height: 100%;
+    display: inline-block;
+    padding-top: 22px;
+    border-bottom: 5px solid #352f64;
+    background-color: #4c448f;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+
+.lienOff a {
+    color: white;
+    font-family: Gotham-Bold;
+}
+
+.lienOn {
+    border-bottom: 0;
+    border-left: 2px solid #4c448f;
+    border-right: 2px solid #4c448f;
+    border-top: 2px solid #4c448f;
+    background-color: rgba(255,255,255,0.9);
+    z-index: 1;
+    height: 91px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.lienOn a {
+    color: #352F64;
+    font-family: Gotham-Bold;
+}
+
+.line-separate {
+    border-right: 2px solid #4c448f;
+    margin-left:5px;
+}
+
+.bg-insert {
+    height: 500px;
+    background-color: white;
+    border: 2px solid #4c448f;
+}
+
+.stylish-input-group {
+    width: 50%;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.de-merde {
+    margin: 10px 5px 10px 5px;
+}
+
+.valid-inventory-button{
+    margin-right: 5px;
+}
+
+body {
+    background-image: url("../images/bg-step2.jpg");
+    background-size: cover;
+}
