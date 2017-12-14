@@ -10,37 +10,49 @@
                 <p>Définissez la liste des objets que vous souhaitez déménager.</p>
             </div>
         </div>
-        <div class="row onglets">
-            <div class="col-md-offset-1 col-md-3 lienOff">
-                <a href="#">UN APPARTEMENT</a>
+
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 lienOff">
+
+                        <a href="#">UN APPARTEMENT</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-offset-1 col-md-3 lienOff">
-                <a href="#">UNE MAISON</a>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 lienOff">
+                        <a href="#">UNE MAISON</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-offset-1 col-md-3 lienOn">
-                <a href="#">INVENTAIRE LIBRE</a>
+
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 lienOn">
+                        <a href="#">INVENTAIRE LIBRE</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row bg-insert">
-            <div class="col-md-4">
-                <div class="row line-separate">
-                    <button class="btn-success">Ajoutez une pièce</button>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <h2>Ajoutez vos meubles</h2>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <input id="autocomplete_search" name="autocomplete_search" type="text" class="form-control" placeholder="Search">
-                        <ul class="list-group" id="autocomplete"></ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div id="stuff_list"></div>
-                    </div>
-                </div>
 
+
+        <div class="row bg-insert">
+            <div class="col-md-3 text-center room-panel">
+                <h2 class="titles">Mes pièces</h2>
+                <button class="btn btn-success">Ajoutez une pièce</button>
+            </div>
+            <div class="col-md-9 text-center stuff-panel">
+                <h2 class="titles">Ajoutez vos meubles</h2>
+                <input id="autocomplete_search" name="autocomplete_search" type="text" class="form-control"
+                       placeholder="Search">
+                <ul class="list-group" id="autocomplete"></ul>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-inline" id="stuff_added"></ul>
+                </div>
             </div>
         </div>
     </div>
