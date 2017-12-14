@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Object
+ * StuffBasket
  *
- * @ORM\Table(name="stuff")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ObjectRepository")
+ * @ORM\Table(name="stuff_basket")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StuffBasketRepository")
  */
-class Stuff
+class StuffBasket
 {
     /**
      * @var int
@@ -29,23 +29,23 @@ class Stuff
     private $name;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="dimension_height", type="integer")
+     * @ORM\Column(name="dimension_height", type="float", nullable=true)
      */
     private $dimensionHeight;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="dimension_width", type="integer")
+     * @ORM\Column(name="dimension_width", type="float", nullable=true)
      */
     private $dimensionWidth;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="dimension_deep", type="integer")
+     * @ORM\Column(name="dimension_deep", type="float", nullable=true)
      */
     private $dimensionDeep;
 
@@ -71,25 +71,29 @@ class Stuff
     private $isCustom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="stuffs")
+     * @var int
+     *
+     * @ORM\Column(name="count", type="integer")
      */
-    private $category;
+    private  $count;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="Room", inversedBy="stuffs")
      */
     private $rooms;
-
     /**
-     * @ORM\ManyToOne(targetEntity="Inventory", inversedBy="stuffs")
+     * Constructor
      */
-    private $stuffs;
-
+    public function __construct()
+    {
+        $this->rooms = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -101,7 +105,7 @@ class Stuff
      *
      * @param string $name
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setName($name)
     {
@@ -123,9 +127,9 @@ class Stuff
     /**
      * Set dimensionHeight
      *
-     * @param integer $dimensionHeight
+     * @param float $dimensionHeight
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setDimensionHeight($dimensionHeight)
     {
@@ -137,7 +141,7 @@ class Stuff
     /**
      * Get dimensionHeight
      *
-     * @return int
+     * @return float
      */
     public function getDimensionHeight()
     {
@@ -147,9 +151,9 @@ class Stuff
     /**
      * Set dimensionWidth
      *
-     * @param integer $dimensionWidth
+     * @param float $dimensionWidth
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setDimensionWidth($dimensionWidth)
     {
@@ -161,7 +165,7 @@ class Stuff
     /**
      * Get dimensionWidth
      *
-     * @return int
+     * @return float
      */
     public function getDimensionWidth()
     {
@@ -171,9 +175,9 @@ class Stuff
     /**
      * Set dimensionDeep
      *
-     * @param integer $dimensionDeep
+     * @param float $dimensionDeep
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setDimensionDeep($dimensionDeep)
     {
@@ -185,7 +189,7 @@ class Stuff
     /**
      * Get dimensionDeep
      *
-     * @return int
+     * @return float
      */
     public function getDimensionDeep()
     {
@@ -197,7 +201,7 @@ class Stuff
      *
      * @param boolean $isWeight
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setIsWeight($isWeight)
     {
@@ -209,7 +213,7 @@ class Stuff
     /**
      * Get isWeight
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsWeight()
     {
@@ -221,7 +225,7 @@ class Stuff
      *
      * @param boolean $isFragile
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setIsFragile($isFragile)
     {
@@ -233,7 +237,7 @@ class Stuff
     /**
      * Get isFragile
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsFragile()
     {
@@ -245,7 +249,7 @@ class Stuff
      *
      * @param boolean $isCustom
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function setIsCustom($isCustom)
     {
@@ -257,7 +261,7 @@ class Stuff
     /**
      * Get isCustom
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsCustom()
     {
@@ -265,35 +269,27 @@ class Stuff
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->rooms = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set category
+     * Set count
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param integer $count
      *
-     * @return Stuff
+     * @return StuffBasket
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCount($count)
     {
-        $this->category = $category;
+        $this->count = $count;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get count
      *
-     * @return \AppBundle\Entity\Category
+     * @return integer
      */
-    public function getCategory()
+    public function getCount()
     {
-        return $this->category;
+        return $this->count;
     }
 
     /**
@@ -301,7 +297,7 @@ class Stuff
      *
      * @param \AppBundle\Entity\Room $room
      *
-     * @return Stuff
+     * @return StuffBasket
      */
     public function addRoom(\AppBundle\Entity\Room $room)
     {
@@ -328,5 +324,18 @@ class Stuff
     public function getRooms()
     {
         return $this->rooms;
+    }
+
+    public function containRooms(Room $room)
+    {
+        $found = false;
+        foreach ($this->getRooms() as $roomEntity) {
+            if ($roomEntity->getId() == $room->getId()) {
+                $found = true;
+                break;
+            }
+        }
+
+        return $found;
     }
 }

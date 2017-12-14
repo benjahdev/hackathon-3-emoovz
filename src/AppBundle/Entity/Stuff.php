@@ -29,23 +29,23 @@ class Stuff
     private $name;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="dimension_height", type="integer")
+     * @ORM\Column(name="dimension_height", type="float", nullable=true)
      */
     private $dimensionHeight;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="dimension_width", type="integer")
+     * @ORM\Column(name="dimension_width", type="float", nullable=true)
      */
     private $dimensionWidth;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="dimension_deep", type="integer")
+     * @ORM\Column(name="dimension_deep", type="float", nullable=true)
      */
     private $dimensionDeep;
 
@@ -76,20 +76,9 @@ class Stuff
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Room", inversedBy="stuffs")
-     */
-    private $rooms;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Inventory", inversedBy="stuffs")
-     */
-    private $stuffs;
-
-
-    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -123,7 +112,7 @@ class Stuff
     /**
      * Set dimensionHeight
      *
-     * @param integer $dimensionHeight
+     * @param float $dimensionHeight
      *
      * @return Stuff
      */
@@ -137,7 +126,7 @@ class Stuff
     /**
      * Get dimensionHeight
      *
-     * @return int
+     * @return float
      */
     public function getDimensionHeight()
     {
@@ -147,7 +136,7 @@ class Stuff
     /**
      * Set dimensionWidth
      *
-     * @param integer $dimensionWidth
+     * @param float $dimensionWidth
      *
      * @return Stuff
      */
@@ -161,7 +150,7 @@ class Stuff
     /**
      * Get dimensionWidth
      *
-     * @return int
+     * @return float
      */
     public function getDimensionWidth()
     {
@@ -171,7 +160,7 @@ class Stuff
     /**
      * Set dimensionDeep
      *
-     * @param integer $dimensionDeep
+     * @param float $dimensionDeep
      *
      * @return Stuff
      */
@@ -185,7 +174,7 @@ class Stuff
     /**
      * Get dimensionDeep
      *
-     * @return int
+     * @return float
      */
     public function getDimensionDeep()
     {
@@ -209,7 +198,7 @@ class Stuff
     /**
      * Get isWeight
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsWeight()
     {
@@ -233,7 +222,7 @@ class Stuff
     /**
      * Get isFragile
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsFragile()
     {
@@ -257,19 +246,11 @@ class Stuff
     /**
      * Get isCustom
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsCustom()
     {
         return $this->isCustom;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->rooms = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -294,63 +275,5 @@ class Stuff
     public function getCategory()
     {
         return $this->category;
-    }
-
-    /**
-     * Add room
-     *
-     * @param \AppBundle\Entity\Room $room
-     *
-     * @return Stuff
-     */
-    public function addRoom(\AppBundle\Entity\Room $room)
-    {
-        $this->rooms[] = $room;
-
-        return $this;
-    }
-
-    /**
-     * Remove room
-     *
-     * @param \AppBundle\Entity\Room $room
-     */
-    public function removeRoom(\AppBundle\Entity\Room $room)
-    {
-        $this->rooms->removeElement($room);
-    }
-
-    /**
-     * Get rooms
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRooms()
-    {
-        return $this->rooms;
-    }
-
-    /**
-     * Set stuffs
-     *
-     * @param \AppBundle\Entity\Inventory $stuffs
-     *
-     * @return Stuff
-     */
-    public function setStuffs(\AppBundle\Entity\Inventory $stuffs = null)
-    {
-        $this->stuffs = $stuffs;
-
-        return $this;
-    }
-
-    /**
-     * Get stuffs
-     *
-     * @return \AppBundle\Entity\Inventory
-     */
-    public function getStuffs()
-    {
-        return $this->stuffs;
     }
 }

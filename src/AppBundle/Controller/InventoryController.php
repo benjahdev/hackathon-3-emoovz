@@ -57,6 +57,7 @@ class InventoryController extends Controller
         ));
     }
 
+
     /**
      * Finds and displays a inventory entity.
      *

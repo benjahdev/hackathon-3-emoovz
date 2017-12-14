@@ -29,7 +29,7 @@ class Room
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Stuff", mappedBy="rooms")
+     * @ORM\ManyToMany(targetEntity="StuffBasket", mappedBy="rooms")
      */
     private $stuffs;
 
@@ -67,7 +67,6 @@ class Room
     {
         return $this->name;
     }
-
     /**
      * Constructor
      */
@@ -79,11 +78,11 @@ class Room
     /**
      * Add stuff
      *
-     * @param \AppBundle\Entity\Stuff $stuff
+     * @param \AppBundle\Entity\StuffBasket $stuff
      *
      * @return Room
      */
-    public function addStuff(\AppBundle\Entity\Stuff $stuff)
+    public function addStuff(\AppBundle\Entity\StuffBasket $stuff)
     {
         $this->stuffs[] = $stuff;
 
@@ -93,9 +92,9 @@ class Room
     /**
      * Remove stuff
      *
-     * @param \AppBundle\Entity\Stuff $stuff
+     * @param \AppBundle\Entity\StuffBasket $stuff
      */
-    public function removeStuff(\AppBundle\Entity\Stuff $stuff)
+    public function removeStuff(\AppBundle\Entity\StuffBasket $stuff)
     {
         $this->stuffs->removeElement($stuff);
     }

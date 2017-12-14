@@ -32,11 +32,18 @@ class Category
      * @ORM\OneToMany(targetEntity="Stuff", mappedBy="category")
      */
     private $stuffs;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->stuffs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -65,13 +72,6 @@ class Category
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->stuffs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
