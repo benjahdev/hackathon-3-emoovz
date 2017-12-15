@@ -31,21 +31,21 @@ class Stuff
     /**
      * @var int
      *
-     * @ORM\Column(name="dimension_height", type="integer")
+     * @ORM\Column(name="dimension_height", type="integer", nullable=true)
      */
     private $dimensionHeight;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="dimension_width", type="integer")
+     * @ORM\Column(name="dimension_width", type="integer", nullable=true)
      */
     private $dimensionWidth;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="dimension_deep", type="integer")
+     * @ORM\Column(name="dimension_deep", type="integer", nullable=true)
      */
     private $dimensionDeep;
 

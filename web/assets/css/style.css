@@ -3,6 +3,11 @@
     src: url("../fonts/GothamBold.ttf");
 }
 
+body {
+    background-image: url("../images/bg-step2.jpg");
+    background-size: cover;
+}
+
 .barre-navigation {
     width: 100%;
 }
@@ -11,28 +16,26 @@
     text-align: center;
     font-family: Gotham-Bold,sans-serif;
     font-weight: bold;
-    font-size: 3em;
+    font-size: calc(1.3vw + 25px);
     color: #352F64;
 }
 
 .intro-text p {
     text-align: center;
     font-family: Gotham-Bold,sans-serif;
-    font-size: 1em;
+    font-size: calc(0.4vw + 10px);
 }
 
 .lienOff {
     height: 95%;
-    display: inline-block;
-    padding: 22px;
+    /*display: inline-block;*/
+    padding: calc(1.5vh + 10px);
     border-bottom: 5px solid #352f64;
     background-color: #4c448f;
     text-align: center;
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
+    font-size: calc(0.2vw + 10px);
+    font-family: Gotham-Bold, sans-serif;
 }
-
 
 .lienOff a{
     color: white;
@@ -40,61 +43,49 @@
 }
 
 .lienOn {
-    border-bottom: 5px solid white;
-    border-left: 2px solid #4c448f;
-    border-right: 2px solid #4c448f;
-    border-top: 2px solid #4c448f;
-    background-color: white;
-    z-index: 1;
-    padding: 22px;
-    text-align: center;
-    font-size: 24px;
-}
-
-.lienOn a {
-    color: #352F64;
+    font-size: calc(0.2vw + 10px);
     font-family: Gotham-Bold, sans-serif;
+    padding: calc(1.5vh + 10px);
+    border: 2px solid #4c448f;
+    border-bottom: 5px solid #352f64;
+    background-color: white;
+    text-align: center;
+
 }
 
-.line-separate {
-    border-right: 2px solid #4c448f;
-    margin-left:5px;
+@media all and (max-width: 991px) {
+.lienOn {
+    border-bottom: 5px solid #4c448f;
+    padding: 1vh;
+    border-top: none;
+}
+.lienOff {
+    padding: 1vh;
+}
+}
+
+.lienOn a, a:hover, a:active {
+    font-family: Gotham-Bold, sans-serif;
+    text-decoration: none;
 }
 
 .bg-insert {
-    height: 500px;
+    margin-top: 5px;
+    height: 60vh;
+    font-family: Gotham-Bold, sans-serif;
     background-color: white;
-    border: 2px solid #4c448f;
+    border-radius: 10px;
 }
 
-.stylish-input-group {
-    width: 50%;
+
+.titles{
+    font-size: calc(0.5vw + 10px);
+}
+.room-panel {
 }
 
-.stylish-input-group .input-group-addon{
-    background: white !important;
-}
-.stylish-input-group .form-control{
-    border-right:0;
-    box-shadow:0 0 0;
-    border-color:#ccc;
-}
-.stylish-input-group button{
-    border:0;
-    background:transparent;
-}
+.stuff-panel {
 
-.de-merde {
-    margin: 10px 5px 10px 5px;
-}
-
-.valid-inventory-button{
-    margin-right: 5px;
-}
-
-body {
-    background-image: url("../images/bg-step2.jpg");
-    background-size: cover;
 }
 
 .onglets{
