@@ -57,18 +57,19 @@ class BasketController extends Controller
     }
 
     /**
-     * @Route("/delete-stuff/{id}/inventory/{inventory_id}", name="delete_stuffbasket")
+     * @Route("/delete-stuff/{id}/inventory/{inventory_id}/room/{room_id}", name="delete_stuffbasket")
      * @ParamConverter("inventory", options={"mapping": {"inventory_id": "id"}})
+     * @ParamConverter("room", options={"mapping": {"room_id": "id"}})
      */
-    public function deleteStuff(Request $request, StuffBasket $stuffBasket, Inventory $inventory)
+    public function deleteStuff(Request $request, StuffBasket $stuffBasket, Inventory $inventory, Room $room)
     {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($stuffBasket);
             $em->flush();
 
-            return $this->render('basket/index.html.twig', array(
-                'inventory' => $inventory,
+            return $this->render('basket/room-inventory.html.twig', array(
+                'results' => $this->getStuffsByRoom($room, $inventory),
             ));
         } else {
             throw new HttpException('500','^_^');

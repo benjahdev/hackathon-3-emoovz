@@ -24,15 +24,15 @@ function updateStuffBasketItemQuantity() {
 
 function deleteStuffBasketItem() {
     let id = $(this).attr('data-id');
+    let room_id = $('.tab-pane-active').attr('data-id');
 
     $.ajax({
         type: "POST",
-        url: "/item/delete-stuff/" + id + "/inventory/1",
+        url: "/item/delete-stuff/" + id + "/inventory/1/room/" + room_id,
         dataType: 'html',
         timeout: 3000,
         success: function (response) {
-            $('#stuff_list').empty()
-                .html(response);
+            $('.tab-pane-active').html(response);
         },
         error: function () {
             console.log('AJAX error (counter) id: ' + id + ' inventory: ' + 1);
