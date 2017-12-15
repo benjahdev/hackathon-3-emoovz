@@ -100,3 +100,58 @@ body {
 .onglets{
     height: 80px;
 }
+
+.tab-pane{
+
+}
+
+.list-room{
+    display: block;
+    margin-top: 5vh;
+    font-size: 20px;
+    text-align: right;
+    color: #4c448f;
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-family: Gotham-Bold;
+}
+
+.list-room.link a:active{
+    color: red;
+}
+
+.room-selector{
+    margin-top: 5vh;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-family: Gotham-Bold;
+}
+
+.room-selector a{
+    color: #4c448f;
+}
+
+.modal-title{
+    font-size: 25px;
+    color: white;
+    text-transform: uppercase;
+    font-family: Gotham-Bold;
+}
+.modal-header{
+    background-color: #4c448f;
+}
+
+.btn-close{
+    background-color: #4c448f;
+    color: white;
+}
+
+a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.list-room a:active.link {
+    background-color: #4c448f;
+}

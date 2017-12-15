@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Room;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Room controller.
@@ -20,14 +21,17 @@ class RoomController extends Controller
      * @Route("/", name="room_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request, Room $room)
     {
         $em = $this->getDoctrine()->getManager();
 
         $rooms = $em->getRepository('AppBundle:Room')->findAll();
+        $form = $this->createForm('AppBundle\Form\SelectedType', $room);
+        $form->handleRequest($request);
 
-        return $this->render('room/index.html.twig', array(
+        return $this->render('home/index.html.twig', array(
             'rooms' => $rooms,
+            'form' => $form->createView(),
         ));
     }
 

@@ -33,6 +33,12 @@ class Room
      */
     private $stuffs;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="selected", type="boolean", nullable=true)
+     */
+    private $selected = false;
+
 
     /**
      * Get id
@@ -108,5 +114,29 @@ class Room
     public function getStuffs()
     {
         return $this->stuffs;
+    }
+
+    /**
+     * Set selected
+     *
+     * @param boolean $selected
+     *
+     * @return Room
+     */
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+
+        return $this;
+    }
+
+    /**
+     * Get selected
+     *
+     * @return boolean
+     */
+    public function getSelected()
+    {
+        return $this->selected;
     }
 }
