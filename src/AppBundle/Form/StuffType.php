@@ -37,10 +37,6 @@ class StuffType extends AbstractType
             ->add('category', EntityType::class, array(
                 'class' => Category::class,
                 'choice_label' => 'name',
-            ))
-            ->add('rooms', EntityType::class, array(
-                'class' => Room::class,
-                'choice_label' => 'name',
             ));
     }
 

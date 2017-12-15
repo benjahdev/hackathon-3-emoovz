@@ -16,21 +16,12 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $selected = new Room();
-        $em = $this->getDoctrine()->getManager();
-        $rooms = $em->getRepository('AppBundle:Room')->findAll();
-        $form = $this->createForm('AppBundle\Form\SelectedType', $selected);
-        $form->handleRequest($request);
+        $inventory = $this->getDoctrine()->getRepository('AppBundle:Inventory')->findOneBy(['id' => 1]);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $this->getDoctrine()->getManager()->flush();
-        }
-
-        return $this->render('home/index.html.twig', array(
-            'rooms' => $rooms,
-            'form' => $form->createView(),
-        ));
+        // replace this example code with whatever you need
+        return $this->render('home/index.html.twig', [
+            'inventory' => $inventory,
+        ]);
     }
 
 }

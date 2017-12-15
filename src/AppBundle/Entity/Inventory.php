@@ -22,59 +22,71 @@ class Inventory
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Stuff", mappedBy="stuffs")
+     * @ORM\ManyToMany(targetEntity="StuffBasket", cascade={"persist"})
      */
-    private $stuffs;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $basketStuffs;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->stuffs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->basketStuffs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add stuff
+     * Get id
      *
-     * @param \AppBundle\Entity\Stuff $stuff
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add basketStuff
+     *
+     * @param \AppBundle\Entity\StuffBasket $basketStuff
      *
      * @return Inventory
      */
-    public function addStuff(\AppBundle\Entity\Stuff $stuff)
+    public function addBasketStuff(\AppBundle\Entity\StuffBasket $basketStuff)
     {
-        $this->stuffs[] = $stuff;
+        $this->basketStuffs[] = $basketStuff;
 
         return $this;
     }
 
     /**
-     * Remove stuff
+     * Remove basketStuff
      *
-     * @param \AppBundle\Entity\Stuff $stuff
+     * @param \AppBundle\Entity\StuffBasket $basketStuff
      */
-    public function removeStuff(\AppBundle\Entity\Stuff $stuff)
+    public function removeBasketStuff(\AppBundle\Entity\StuffBasket $basketStuff)
     {
-        $this->stuffs->removeElement($stuff);
+        $this->basketStuffs->removeElement($basketStuff);
     }
 
     /**
-     * Get stuffs
+     * Get basketStuffs
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getStuffs()
+    public function getBasketStuffs()
     {
-        return $this->stuffs;
+        return $this->basketStuffs;
+    }
+
+    public function containStuff(Stuff $stuff)
+    {
+        $found = false;
+        foreach ($this->getBasketStuffs() as $stuffEntity) {
+            if ($stuffEntity->getName() == $stuff->getName()) {
+                $found = true;
+                break;
+            }
+        }
+
+        return $found;
     }
 }

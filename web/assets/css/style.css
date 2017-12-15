@@ -71,7 +71,8 @@ body {
 
 .bg-insert {
     margin-top: 5px;
-    height: 60vh;
+    min-height: 60vh;
+    /*height: 60vh;*/
     font-family: Gotham-Bold, sans-serif;
     background-color: white;
     border-radius: 10px;
@@ -86,6 +87,10 @@ body {
 
 .stuff-panel {
 
+}
+
+.item-quantity {
+    width: 60px !important;
 }
 
 .onglets{
