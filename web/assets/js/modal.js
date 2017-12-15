@@ -9,13 +9,13 @@ $('.list-room').click(function(e){
     $(this).remove();
 });
 
-
 $('.room-selector').click(function(e){
     e.preventDefault();
     // let is_selected = $(this).attr('data-selected');
     $('#myTab').append(
     $('<a class="list-room" data-id="' + $(this).attr('data-id') + '" data-toggle="tab"></a>')
         .append($(this).attr('data-name'))
+        .append('<span class="btn btn-danger delete-room glyphicon glyphicon-trash"></span>')
         .addClass("list-room link")
         .on('click', function(e){
             let lol = $(this).attr('data-id');
@@ -31,6 +31,19 @@ $('.room-selector').click(function(e){
                 error: function () {
                     console.log('AJAX error (counter) id: ' + id + ' inventory: ' + 1);
                 }
+            });
+
+            $('.delete-room').on('click', function(){
+                let roomName =  $(this).parent().text();
+                let roomId = $(this).parent().attr('data-id');
+                $('.modal-body').append(
+                  $('<div></div>').addClass('room-selector')
+                      .attr('data-id', roomId)
+                      .attr('data-name', roomName)
+                      .append($('<a></a>')
+                          .append(roomName))
+                );
+                $(this).parent().remove();
             });
 
             $('.list-room').removeClass('btn-room');
@@ -57,6 +70,3 @@ $('.room-selector').click(function(e){
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
 });
-
-
-
