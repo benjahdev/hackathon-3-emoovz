@@ -13,9 +13,9 @@ class StuffRepository extends EntityRepository
             ->select('s.name, s.id')
             ->Where('s.name LIKE :name')
             ->setParameter('name', $name)
+            ->orderBy('s.name')
             ->getQuery();
 
         return $qb->getResult();
-
     }
 }
