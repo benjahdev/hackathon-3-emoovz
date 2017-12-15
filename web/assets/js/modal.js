@@ -33,12 +33,14 @@ $('.room-selector').click(function(e){
                 }
             });
 
+            $('.list-room').removeClass('btn-room');
+
             $('.tab-pane')
                 .fadeOut()
                 .hide()
                 .removeClass('tab-pane-active');
 
-
+            $(this).addClass('btn-room');
 
             $('.tab-content').find('#lol' + lol)
                 .addClass('tab-pane-active')

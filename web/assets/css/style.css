@@ -83,6 +83,8 @@ body {
     font-size: calc(0.5vw + 10px);
 }
 .room-panel {
+    border-right: 2px solid #4C448F;
+    min-height: 60vh;
 }
 
 .stuff-panel {
@@ -110,6 +112,7 @@ body {
     text-transform: uppercase;
     margin-right: 10px;
     font-family: Gotham-Bold;
+    padding:5px;
 }
 
 .list-room.link a:active{
@@ -149,5 +152,34 @@ a:hover{
 }
 
 .list-room a:active.link {
+    background-color: #4c448f;
+}
+
+.btn-room {
+    background-color: #4c448f;
+    color: white;
+    padding:5px;
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.btn-room:hover {
+    background-color: #4c448f;
+    color: white;
+    padding:5px;
+}
+
+.btn-success:hover {
+    background-color: #4c448f;
+    border-color: #4c448f;
+    border-radius:0;
+}
+
+.btn-success {
+    background-color: #4c448f;
+    border-color: #4c448f;
+    border-radius:0;
+}
+
+ .btn-success:focus {
     background-color: #4c448f;
 }
