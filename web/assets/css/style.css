@@ -14,7 +14,7 @@ body {
 
 .intro-text h1 {
     text-align: center;
-    font-family: Gotham-Bold,sans-serif;
+    font-family: Gotham-Bold, sans-serif;
     font-weight: bold;
     font-size: calc(1.3vw + 25px);
     color: #352F64;
@@ -22,7 +22,7 @@ body {
 
 .intro-text p {
     text-align: center;
-    font-family: Gotham-Bold,sans-serif;
+    font-family: Gotham-Bold, sans-serif;
     font-size: calc(0.4vw + 10px);
 }
 
@@ -37,7 +37,7 @@ body {
     font-family: Gotham-Bold, sans-serif;
 }
 
-.lienOff a{
+.lienOff a {
     color: white;
     font-family: Gotham-Bold, sans-serif;
 }
@@ -54,14 +54,15 @@ body {
 }
 
 @media all and (max-width: 991px) {
-.lienOn {
-    border-bottom: 5px solid #4c448f;
-    padding: 1vh;
-    border-top: none;
-}
-.lienOff {
-    padding: 1vh;
-}
+    .lienOn {
+        border-bottom: 5px solid #4c448f;
+        padding: 1vh;
+        border-top: none;
+    }
+
+    .lienOff {
+        padding: 1vh;
+    }
 }
 
 .lienOn a, a:hover, a:active {
@@ -78,13 +79,21 @@ body {
     border-radius: 10px;
 }
 
-
-.titles{
+.titles {
     font-size: calc(0.5vw + 10px);
+    margin-bottom: calc(2vh + 8px);
 }
+
 .room-panel {
     border-right: 2px solid #4C448F;
     min-height: 60vh;
+}
+
+@media all and (max-width: 991px) {
+    .room-panel {
+        min-height: auto;
+        border: none;
+    }
 }
 
 .stuff-panel {
@@ -95,60 +104,69 @@ body {
     width: 60px !important;
 }
 
-.onglets{
-    height: 80px;
-}
+/*.onglets{*/
+/*height: 80px;*/
+/*}*/
 
-.tab-pane{
-
-}
-
-.list-room{
+.list-room {
     display: block;
-    margin-top: 5vh;
-    font-size: 20px;
+    margin-top: calc(0.5vh + 5px);
+    font-size: calc(0.3vw + 15px);
     text-align: right;
     color: #4c448f;
     text-transform: uppercase;
-    margin-right: 10px;
-    font-family: Gotham-Bold;
-    padding:5px;
+    /*margin-right: 10px;*/
+    font-family: Gotham-Bold, sans-serif;
+    padding: calc(0.5vh + 5px);
 }
 
-.list-room.link a:active{
-    color: red;
+@media all and (max-width: 991px) {
+    .list-room {
+        text-align: center;
+    }
 }
 
-.room-selector{
-    margin-top: 5vh;
-    font-size: 20px;
+/*.list-room.link a:active{*/
+/*color: red;*/
+/*}*/
+
+.room-selector {
+    padding: calc(0.5vh + 4px);
+    font-size: calc(0.8vw + 10px);
     text-transform: uppercase;
-    margin-right: 10px;
-    font-family: Gotham-Bold;
+    /*margin-right: 10px;*/
+    font-family: Gotham-Bold, sans-serif;
 }
 
-.room-selector a{
+.room-selector a {
     color: #4c448f;
 }
 
-.modal-title{
-    font-size: 25px;
+.modal-title {
+    font-size: calc(0.5vw + 15px);
     color: white;
     text-transform: uppercase;
-    font-family: Gotham-Bold;
+    font-family: Gotham-Bold, sans-serif;
 }
-.modal-header{
+
+.modal-header {
     background-color: #4c448f;
 }
 
-.btn-close{
+.btn-close {
     background-color: #4c448f;
     color: white;
 }
 
-a:hover{
+a:hover {
     cursor: pointer;
     text-decoration: none;
+}
+
+#autocomplete > li:hover {
+    cursor: pointer;
+    background-color: rgb(208, 212, 219);
+
 }
 
 .list-room a:active.link {
@@ -156,39 +174,62 @@ a:hover{
 }
 
 .btn-room {
-    background-color: #4c448f;
-    color: white;
-    padding:5px;
+    background-color: rgb(208, 212, 219);
+    color: #4c448f;
+    padding: 5px;
     transition: width 2s, height 2s, background-color 2s, transform 2s;
 }
 
-.btn-room:hover {
-    background-color: #4c448f;
-    color: white;
-    padding:5px;
-}
+/*.btn-room:hover {*/
+/*background-color: #4c448f;*/
+/*color: white;*/
+/*padding:5px;*/
+/*}*/
 
 .btn-success:hover {
     background-color: #4c448f;
     border-color: #4c448f;
-    border-radius:0;
+    border-radius: 0;
 }
 
 .btn-success {
     background-color: #4c448f;
     border-color: #4c448f;
-    border-radius:0;
+    border-radius: 0;
+    padding: calc(0.2vw + 5px);
+    font-size: calc(0.5vw + 10px);
 }
 
- .btn-success:focus {
+.btn-success:focus {
     background-color: #4c448f;
 }
 
- .message-empty {
-     color: #4c448f;
-     text-align: center;
-     font-family: Gotham-Bold;
- }
- .img-carton {
-     margin-right: auto;
- }
+.message-empty {
+    color: #4c448f;
+    text-align: center;
+    font-family: Gotham-Bold, sans-serif;
+}
+
+.img-carton {
+    margin-right: auto;
+}
+
+#autocomplete_search {
+    /*width: 30vw;*/
+    border-radius: 0;
+}
+
+#myTab {
+    margin-left: -42px;
+}
+
+@media all and (max-width: 991px) {
+    .list-inline > li {
+        display: block;
+    }
+
+    .form-control {
+        display: inline;
+        margin-bottom: 0;
+    }
+}

@@ -67,7 +67,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Valider
+                                <button type="button" class="btn btn-default btn-close room-add" data-dismiss="modal">
+                                    Valider
                                 </button>
                             </div>
                         </div><!-- /.modal-content -->
@@ -77,12 +78,12 @@
             <div class="col-md-9 stuff-panel">
                 <h2 class="titles text-center">Ajoutez vos meubles</h2>
                 <input id="autocomplete_search" name="autocomplete_search" type="text" class="form-control"
-                       placeholder="Search">
+                       placeholder="Exemple : table, canapé, chaise...">
                 <ul class="list-group" id="autocomplete"></ul>
-                <div class="tab-content"></div>
-                {#<ul class="list-inline" id="stuff_list">#}
+                    <div class="tab-content"></div>
+                    {#<ul class="list-inline" id="stuff_list">#}
                     {#{{ render(controller('AppBundle:Inventory:showUserInventory', { 'id': '1' })) }}#}
-                {#</ul>#}
+                    {#</ul>#}
             </div>
         </div>
     </div>
