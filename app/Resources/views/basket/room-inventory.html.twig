@@ -4,8 +4,8 @@
             <div class="form-group">
                 <label for="inventory_{{ stuff.id }}">{{ stuff.name ~ ' ' }}</label>
                 <input id="inventory_{{ stuff.id }}" class="item-quantity form-control" type="number" data-id="{{ stuff.id }}" value="{{ stuff.count }}">
-                <button class="btn">
-                    <span class="item-delete glyphicon glyphicon-remove text-danger" data-id="{{ stuff.id }}"></span>
+                <button class="btn btn-default item-delete" data-id="{{ stuff.id }}">
+                    <span class="glyphicon glyphicon-remove text-danger"></span>
                 </button>
             </div>
         </li>
