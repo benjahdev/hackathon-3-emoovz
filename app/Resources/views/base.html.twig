@@ -9,10 +9,15 @@
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
+    <header>
+        <img class="barre-navigation" src="{{ asset("assets/images/navbar.png") }}">
+    </header>
+
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
         <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

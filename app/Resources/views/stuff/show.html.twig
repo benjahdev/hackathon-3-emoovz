@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Stuff</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stuff.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ stuff.name }}</td>
+            </tr>
+            <tr>
+                <th>Dimensionheight</th>
+                <td>{{ stuff.dimensionHeight }}</td>
+            </tr>
+            <tr>
+                <th>Dimensionwidth</th>
+                <td>{{ stuff.dimensionWidth }}</td>
+            </tr>
+            <tr>
+                <th>Dimensiondeep</th>
+                <td>{{ stuff.dimensionDeep }}</td>
+            </tr>
+            <tr>
+                <th>Isweight</th>
+                <td>{% if stuff.isWeight %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isfragile</th>
+                <td>{% if stuff.isFragile %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Iscustom</th>
+                <td>{% if stuff.isCustom %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stuff_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('stuff_edit', { 'id': stuff.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -18,4 +18,4 @@
 !/web/images
 !/web/images/.gitkeep
 composer.json
-/src/AppBundle/Entity/*~.php
+*.php~
