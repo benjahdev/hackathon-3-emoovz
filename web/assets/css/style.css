@@ -192,3 +192,8 @@ a:hover{
  .img-carton {
      margin-right: auto;
  }
+ .delete-room.btn {
+     font-size: 12px;
+     margin-left:1vw;
+     padding: 4px 8px;
+ }
