@@ -1,60 +1,98 @@
-$(document).ready(function () {
-    $('#autocomplete_search').keyup(function () {
-        const inputstuff = $(this).val().toUpperCase();
-        if (inputstuff.length >= 3) {
-            $.ajax({
-                type: "POST",
-                url: "/stuff/list/" + inputstuff,
-                dataType: 'json',
-                timeout: 3000,
-                success: function (response) {
-                    let stuffs = JSON.parse(response.data);
-                    let html = "";
-                    for (stuff of stuffs) {
-                        let highlightstuff = stuff.name.replace(inputstuff, `<span class="highlight">${inputstuff}</span>`);
-                        html += `<li data-id="${stuff.id}" class="list-group-item"><span class="stuff">${highlightstuff}</span></li>`;
-                    }
-                    $('#autocomplete').html(html);
-                    $('#autocomplete li').on('click', function () {
-                        $('#autocomplete').html('');
-                        let data_id = $(this).attr('data-id');
-                        $.ajax({
-                            type: "POST",
-                            url: `/item/add/${data_id}/1`,
-                            dataType: 'html',
-                            timeout: 3000,
-                            success: function (response) {
-                                console.log(response);
-                                $('#stuff_list').append(response);
-                            },
-                            error: function() {
-                                $('#autocomplete').text('Ajax call error 2');
-                            }
-                        });
-                    });
-                },
-                error: function () {
-                    $('#autocomplete').text('Ajax call error');
-                }
-            });
-        } else {
-            $('#autocomplete').html('');
+function updateStuffBasketItemQuantity() {
+    let id = $(this).attr('data-id');
+    let value = $(this).val();
+
+    if (value < 1) {
+        $(this).val(1);
+    } else if (value > 99) {
+        $(this).val(99);
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/item/update-stuff-counter/" + id + "/inventory/1/" + value,
+        dataType: 'html',
+        timeout: 3000,
+        success: function (response) {
+            $('#stuff_list').empty()
+                .html(response);
+        },
+        error: function () {
+            console.log('AJAX error (counter) id: ' + id + ' value: ' + value + ' inventory: ' + 1);
         }
     });
+}
+
+function deleteStuffBasketItem() {
+    let id = $(this).attr('data-id');
+
+    $.ajax({
+        type: "POST",
+        url: "/item/delete-stuff/" + id + "/inventory/1",
+        dataType: 'html',
+        timeout: 3000,
+        success: function (response) {
+            $('#stuff_list').empty()
+                .html(response);
+        },
+        error: function () {
+            console.log('AJAX error (counter) id: ' + id + ' inventory: ' + 1);
+        }
+    });
+}
+
+function addStuffBasketItem() {
+    $('#autocomplete').html('');
+    let data_id = $(this).attr('data-id');
+
+    bindCancel = false;
+    $.ajax({
+        type: "POST",
+        url: `/item/add/${data_id}/1`,
+        dataType: 'html',
+        timeout: 3000,
+        success: function (response) {
+            $('#stuff_list').html(response);
+
+        },
+        error: function () {
+            $('#autocomplete').text('Ajax click stuff list error');
+        }
+    });
+}
+
+function addStuffItemToResults() {
+    let inputstuff = $(this).val().toUpperCase();
+
+    if (inputstuff.length >= 3) {
+        $.ajax({
+            type: "POST",
+            url: "/stuff/list/" + inputstuff,
+            dataType: 'json',
+            timeout: 3000,
+            success: function (response) {
+                let stuffs = JSON.parse(response.data);
+                let html = "";
+
+                for (stuff of stuffs) {
+                    html += `<li data-id="${stuff.id}" class="list-group-item">${stuff.name}</li>`;
+                }
+
+                $('#autocomplete').html(html);
+                $('#autocomplete').find('li').on('click', addStuffBasketItem);
+                $('#autocomplete').find('.item-delete', deleteStuffBasketItem);
+            },
+            error: function () {
+                console.log('Ajax stuff list error')
+            }
+        });
+    } else {
+        $('#autocomplete').html('');
+    }
+}
+
+$(document).ready(function () {
+    $('#autocomplete_search').keyup(addStuffItemToResults);
+    $(document).on('keyup mouseup', '.item-quantity', updateStuffBasketItemQuantity);
+    $(document).on('click', '.item-delete', deleteStuffBasketItem);
 });
-
-
-
-// let getstuff = $(this).children('span').first().text();
-// //$('#autocomplete_search').val(getstuff);
-// $('#autocomplete').html('');
-// let selectioned = $('<li></li>')
-//     .addClass('list-group-item')
-//     .append($('<span></span>'))
-//     .append(getstuff)
-//     .append("<span class='delete glyphicon glyphicon-trash'></span>");
-// $('#stuff_added').append(selectioned);
-// $(".delete").on('click', function (e) {
-//     e.preventDefault();
-//     $(this).parent(2).remove();
-// })

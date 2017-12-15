@@ -15,6 +15,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class InventoryController extends Controller
 {
     /**
+     * @Route("/{id}/inventory", name="inventory_details")
+     */
+    public function showUserInventoryAction(Inventory $inventory)
+    {
+        return $this->render('basket/index.html.twig', [
+            'inventory' => $inventory
+        ]);
+    }
+
+    /**
      * Lists all inventory entities.
      *
      * @Route("/", name="inventory_index")
