@@ -71,7 +71,8 @@ body {
 
 .bg-insert {
     margin-top: 5px;
-    height: 60vh;
+    min-height: 60vh;
+    /*height: 60vh;*/
     font-family: Gotham-Bold, sans-serif;
     background-color: white;
     border-radius: 10px;
@@ -87,30 +88,66 @@ body {
 .stuff-panel {
 
 }
-/*.stylish-input-group {*/
-    /*width: 50%;*/
-/*}*/
 
-/*.stylish-input-group .input-group-addon{*/
-    /*background: white !important;*/
-/*}*/
-/*.stylish-input-group .form-control{*/
-    /*border-right:0;*/
-    /*box-shadow:0 0 0;*/
-    /*border-color:#ccc;*/
-/*}*/
-/*.stylish-input-group button{*/
-    /*border:0;*/
-    /*background:transparent;*/
-/*}*/
+.item-quantity {
+    width: 60px !important;
+}
 
-/*.de-merde {*/
-    /*margin: 10px 5px 10px 5px;*/
-/*}*/
+.onglets{
+    height: 80px;
+}
 
-/*.valid-inventory-button{*/
-    /*margin-right: 5px;*/
-/*}*/
+.tab-pane{
 
+}
 
+.list-room{
+    display: block;
+    margin-top: 5vh;
+    font-size: 20px;
+    text-align: right;
+    color: #4c448f;
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-family: Gotham-Bold;
+}
 
+.list-room.link a:active{
+    color: red;
+}
+
+.room-selector{
+    margin-top: 5vh;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-family: Gotham-Bold;
+}
+
+.room-selector a{
+    color: #4c448f;
+}
+
+.modal-title{
+    font-size: 25px;
+    color: white;
+    text-transform: uppercase;
+    font-family: Gotham-Bold;
+}
+.modal-header{
+    background-color: #4c448f;
+}
+
+.btn-close{
+    background-color: #4c448f;
+    color: white;
+}
+
+a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.list-room a:active.link {
+    background-color: #4c448f;
+}

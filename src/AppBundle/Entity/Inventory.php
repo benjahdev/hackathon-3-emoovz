@@ -77,11 +77,11 @@ class Inventory
         return $this->basketStuffs;
     }
 
-    public function containStuff(StuffBasket $stuff)
+    public function containStuff(Stuff $stuff)
     {
         $found = false;
         foreach ($this->getBasketStuffs() as $stuffEntity) {
-            if ($stuffEntity->getId() == $stuff->getId()) {
+            if ($stuffEntity->getName() == $stuff->getName()) {
                 $found = true;
                 break;
             }
