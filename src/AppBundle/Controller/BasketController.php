@@ -26,6 +26,37 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class BasketController extends Controller
 {
+    /**
+     * @Route("/result", name="item_result")
+     */
+    public function showDeepLearning()
+    {
+        $results = [];
+        $em = $this->getDoctrine()->getManager();
+        $inventories = $em->getRepository('AppBundle:Inventory')->findAll();
+
+        /**
+         * @var Inventory $inventory
+         */
+        foreach ($inventories as $inventory ) {
+            /**
+             * @var StuffBasket $stuff
+             */
+            foreach ($inventory->getBasketStuffs() as $stuff) {
+                if (array_key_exists($stuff->getName(), $results)) {
+                    $results[$stuff->getName()] += $stuff->getCount();
+                } else {
+                    $results[$stuff->getName()] = 1;
+                }
+            }
+        }
+        arsort($results);
+
+        return $this->render('basket/result.html.twig', [
+            'results' => $results
+        ]);
+    }
+
     public function getStuffsByRoom(Room $room, Inventory $inventory)
     {
         $results = [];
