@@ -78,10 +78,12 @@ class BasketController extends Controller
 
 
     /**
-     * @Route("/update-stuff-counter/{id}/inventory/{inventory_id}/{value}", name="update_stuffbasket_counter")
+     * @Route("/update-stuff-counter/{id}/room/{room_id}/inventory/{inventory_id}/{value}", name="update_stuffbasket_counter")
+     * @ParamConverter("room", options={"mapping": {"room_id": "id"}})
      * @ParamConverter("inventory", options={"mapping": {"inventory_id": "id"}})
      */
-    public function updateCountOfStuff(Request $request, StuffBasket $stuffBasket, Inventory $inventory, int $value)
+    public function updateCountOfStuff(
+        Request $request, StuffBasket $stuffBasket, Room $room, Inventory $inventory, int $value)
     {
         if ($request->isXmlHttpRequest()) {
             if ($value < 1) {
@@ -97,10 +99,9 @@ class BasketController extends Controller
             $em->persist($stuffBasket);
             $em->flush();
 
-            return $this->render('basket/index.html.twig', array(
-                'inventory' => $inventory,
+            return $this->render('basket/room-inventory.html.twig', array(
+                'results' => $this->getStuffsByRoom($room, $inventory),
             ));
-
         } else {
             throw new HttpException('500','^_^');
         }
