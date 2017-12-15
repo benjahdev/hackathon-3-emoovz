@@ -44,16 +44,18 @@ function deleteStuffBasketItem() {
 function addStuffBasketItem() {
     $('#autocomplete').html('');
     let data_id = $(this).attr('data-id');
+    let room_id = $('.tab-pane-active').attr('data-id');
 
-    bindCancel = false;
+    console.log('BLA');
+    console.log('room_id: ' + room_id);
+
     $.ajax({
         type: "POST",
-        url: `/item/add/${data_id}/1`,
+        url: `/item/add/${data_id}/${room_id}`,
         dataType: 'html',
         timeout: 3000,
         success: function (response) {
-            $('#stuff_list').html(response);
-
+            $('.tab-pane-active').html(response);
         },
         error: function () {
             $('#autocomplete').text('Ajax click stuff list error');
@@ -80,7 +82,7 @@ function addStuffItemToResults() {
 
                 $('#autocomplete').html(html);
                 $('#autocomplete').find('li').on('click', addStuffBasketItem);
-                $('#autocomplete').find('.item-delete', deleteStuffBasketItem);
+                //$('#autocomplete').find('.item-delete', deleteStuffBasketItem);
             },
             error: function () {
                 console.log('Ajax stuff list error')

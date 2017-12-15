@@ -26,6 +26,36 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class BasketController extends Controller
 {
+    public function getStuffsByRoom(Room $room, Inventory $inventory)
+    {
+        $results = [];
+
+        /**
+         * @var StuffBasket $basketStuff
+         */
+        foreach ($inventory->getBasketStuffs() as $basketStuff) {
+            if ($basketStuff->containRooms($room)) {
+                $results[] = $basketStuff;
+            }
+        }
+
+        return $results;
+    }
+    /**
+     * @Route("/room/{id}/inventory/{inventory_id}", name="room_stuffbasket")
+     * @ParamConverter("inventory", options={"mapping": {"inventory_id": "id"}})
+     */
+    public function getInventoryByRoom(Request $request, Room $room, Inventory $inventory)
+    {
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('basket/room-inventory.html.twig', array(
+                'results' => $this->getStuffsByRoom($room, $inventory),
+            ));
+        } else {
+            throw new HttpException('500','^_^');
+        }
+    }
+
     /**
      * @Route("/delete-stuff/{id}/inventory/{inventory_id}", name="delete_stuffbasket")
      * @ParamConverter("inventory", options={"mapping": {"inventory_id": "id"}})
@@ -121,12 +151,11 @@ class BasketController extends Controller
                 $em->flush();
             }
 
-            return $this->render('basket/index.html.twig', array(
-                'inventory' => $inventory,
+            return $this->render('basket/room-inventory.html.twig', array(
+                'results' => $this->getStuffsByRoom($room, $inventory),
             ));
         } else {
             throw new HttpException('500','^_^');
         }
     }
-
 }

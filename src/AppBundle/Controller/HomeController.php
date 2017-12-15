@@ -16,11 +16,14 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $inventory = $this->getDoctrine()->getRepository('AppBundle:Inventory')->findOneBy(['id' => 1]);
+        $em = $this->getDoctrine()->getManager();
+        $inventory = $em->getRepository('AppBundle:Inventory')->findOneBy(['id' => 1]);
+        $rooms = $em->getRepository('AppBundle:Room')->findAll();
 
         // replace this example code with whatever you need
         return $this->render('home/index.html.twig', [
             'inventory' => $inventory,
+            'rooms' => $rooms,
         ]);
     }
 

@@ -1,0 +1,13 @@
+<ul class="list-inline">
+    {% for stuff in results %}
+        <li class="list-group-item form-inline">
+            <div class="form-group">
+                <label for="inventory_{{ stuff.id }}">{{ stuff.name ~ ' ' }}</label>
+                <input id="inventory_{{ stuff.id }}" class="item-quantity form-control" type="number" data-id="{{ stuff.id }}" value="{{ stuff.count }}">
+                <button class="btn">
+                    <span class="item-delete glyphicon glyphicon-remove text-danger" data-id="{{ stuff.id }}"></span>
+                </button>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
