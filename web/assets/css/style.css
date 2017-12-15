@@ -209,20 +209,21 @@ a:hover {
     text-align: center;
     font-family: Gotham-Bold, sans-serif;
 }
-
-.img-carton {
-    margin-right: auto;
-}
-
+ .img-carton {
+     margin-right: auto;
+ }
+ .delete-room.btn {
+     font-size: 12px;
+     margin-left:1vw;
+     padding: 4px 8px;
+ }
 #autocomplete_search {
     /*width: 30vw;*/
     border-radius: 0;
 }
-
 #myTab {
     margin-left: -42px;
 }
-
 @media all and (max-width: 991px) {
     .list-inline > li {
         display: block;
