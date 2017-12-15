@@ -1,4 +1,8 @@
 <ul class="list-inline">
+    {% if results == null %}
+        <h3 class="message-empty">Ajouter un meuble à cette pièce</h3>
+        <center><img class="img-carton" src="{{ asset("assets/images/carton.png") }}"></center>
+    {% else %}
     {% for stuff in results %}
         <li class="list-group-item form-inline">
             <div class="form-group">
@@ -19,4 +23,5 @@
             </div>
         </li>
     {% endfor %}
+    {% endif %}
 </ul>
