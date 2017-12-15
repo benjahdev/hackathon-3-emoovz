@@ -1,0 +1,27 @@
+<ul class="list-inline">
+    {% if results == null %}
+        <h3 class="message-empty">Ajouter un meuble à cette pièce</h3>
+        <center><img class="img-carton" src="{{ asset("assets/images/carton.png") }}"></center>
+    {% else %}
+    {% for stuff in results %}
+        <li class="list-group-item form-inline">
+            <div class="form-group">
+                <label for="inventory_{{ stuff.id }}">{{ stuff.name ~ ' ' }}</label>
+                {#<a class="incr-btn" data-action="decrease" href="#">–</a>#}
+                <input id="inventory_{{ stuff.id }}" class="item-quantity form-control quantity" min="1" max="99" type="number" name="quantity" data-id="{{ stuff.id }}" value="{{ stuff.count }}">
+                {#<a class="incr-btn" data-action="increase" href="#">&plus;</a>#}
+                {#<button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">#}
+                    {#<span class="glyphicon glyphicon-minus"></span>#}
+                {#</button>#}
+                {#<input id="inventory_{{ stuff.id }}" type="text" name="quant[1]" class="form-control input-number item-quantity" min="1" max="99" data-id="{{ stuff.id }}" value="{{ stuff.count }}">#}
+                {#<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">#}
+                    {#<span class="glyphicon glyphicon-plus"></span>#}
+                {#</button>#}
+                <button class="btn btn-default item-delete" data-id="{{ stuff.id }}">
+                    <span class="glyphicon glyphicon-remove text-danger"></span>
+                </button>
+            </div>
+        </li>
+    {% endfor %}
+    {% endif %}
+</ul>

@@ -1,6 +1,7 @@
 function updateStuffBasketItemQuantity() {
     let id = $(this).attr('data-id');
     let value = $(this).val();
+    let room_id = $('.tab-pane-active').attr('data-id');
 
     if (value < 1) {
         $(this).val(1);
@@ -10,12 +11,11 @@ function updateStuffBasketItemQuantity() {
 
     $.ajax({
         type: "POST",
-        url: "/item/update-stuff-counter/" + id + "/inventory/1/" + value,
+        url: "/item/update-stuff-counter/" + id + "/room/" + room_id + "/inventory/1/" + value,
         dataType: 'html',
         timeout: 3000,
         success: function (response) {
-            $('#stuff_list').empty()
-                .html(response);
+            $('.tab-pane-active').html(response);
         },
         error: function () {
             console.log('AJAX error (counter) id: ' + id + ' value: ' + value + ' inventory: ' + 1);
@@ -25,15 +25,15 @@ function updateStuffBasketItemQuantity() {
 
 function deleteStuffBasketItem() {
     let id = $(this).attr('data-id');
+    let room_id = $('.tab-pane-active').attr('data-id');
 
     $.ajax({
         type: "POST",
-        url: "/item/delete-stuff/" + id + "/inventory/1",
+        url: "/item/delete-stuff/" + id + "/inventory/1/room/" + room_id,
         dataType: 'html',
         timeout: 3000,
         success: function (response) {
-            $('#stuff_list').empty()
-                .html(response);
+            $('.tab-pane-active').html(response);
         },
         error: function () {
             console.log('AJAX error (counter) id: ' + id + ' inventory: ' + 1);
@@ -44,16 +44,18 @@ function deleteStuffBasketItem() {
 function addStuffBasketItem() {
     $('#autocomplete').html('');
     let data_id = $(this).attr('data-id');
+    let room_id = $('.tab-pane-active').attr('data-id');
 
-    bindCancel = false;
+    console.log('BLA');
+    console.log('room_id: ' + room_id);
+
     $.ajax({
         type: "POST",
-        url: `/item/add/${data_id}/1`,
+        url: `/item/add/${data_id}/${room_id}`,
         dataType: 'html',
         timeout: 3000,
         success: function (response) {
-            $('#stuff_list').html(response);
-
+            $('.tab-pane-active').html(response);
         },
         error: function () {
             $('#autocomplete').text('Ajax click stuff list error');
@@ -80,7 +82,7 @@ function addStuffItemToResults() {
 
                 $('#autocomplete').html(html);
                 $('#autocomplete').find('li').on('click', addStuffBasketItem);
-                $('#autocomplete').find('.item-delete', deleteStuffBasketItem);
+                //$('#autocomplete').find('.item-delete', deleteStuffBasketItem);
             },
             error: function () {
                 console.log('Ajax stuff list error')
@@ -92,7 +94,31 @@ function addStuffItemToResults() {
 }
 
 $(document).ready(function () {
+    $(document).on("click", ".incr-btn", function (e) {
+        let $button = $(this);
+        let oldValue = $button.parent().find('.quantity').val();
+        let newVal = 1;
+        $button.parent().find('.incr-btn[data-action="decrease"]').removeClass('inactive');
+        if ($button.data('action') == "increase") {
+            newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below 1
+            if (oldValue > 1) {
+                newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 1;
+                $button.addClass('inactive');
+            }
+        }
+        $button.parent().find('.quantity').val(newVal);
+        e.preventDefault();
+
+        updateStuffBasketItemQuantity();
+    });
+
     $('#autocomplete_search').keyup(addStuffItemToResults);
-    $(document).on('keyup mouseup', '.item-quantity', updateStuffBasketItemQuantity);
+    $(document).on('change paste keyup', '.item-quantity', updateStuffBasketItemQuantity);
     $(document).on('click', '.item-delete', deleteStuffBasketItem);
+
+
 });
